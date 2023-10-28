@@ -49,6 +49,7 @@ const NoExpense = () => {
             height={10.92}
             name={AddIcon}
             style={{ marginTop: 29 }}
+            onPress={() => refRBSheet.current.open()}
           />
         </View>
         <View

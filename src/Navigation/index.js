@@ -13,6 +13,7 @@ import AddExpense from '../Screens/AddExpense';
 import NoExpense from '../Screens/NoExpense';
 import DashboardScreen from '../Screens/DashboardScreen';
 import BottomTabRN from './TabNavigators/BottomNavigationBelow';
+import SignUp from '../Screens/Auth/Login/SignUp';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,13 @@ const Navigations = () => {
          <Stack.Screen
             name="Login"
             component={Login}
+            options={{
+              headerShown: false,
+            }}
+          />
+           <Stack.Screen
+            name="SignUp"
+            component={SignUp}
             options={{
               headerShown: false,
             }}
