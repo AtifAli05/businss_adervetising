@@ -8,10 +8,10 @@ import AnySvg from "../../../Assets/Images/svg";
 import EmailIcon from "../../../Assets/Images/svg/Email-Icon";
 import PasswordSecure from "../../../Assets/Images/svg/Password-Secure";
 import PasswordLock from "../../../Assets/Images/svg/Password-Secure";
-const Login = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
   return (
     <View style={styles.mainContainerLogin}>
-      <Text style={styles.SignIn}>Sign In</Text>
+      <Text style={styles.SignIn}>Sign Up</Text>
 
       <View
         style={{
@@ -61,12 +61,12 @@ const Login = ({ navigation }) => {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+      {/* <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.ForgotText}>Forgot password?</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View>
         <ButtonPrimary
-          title={"Sign In"}
+          title={"Sign Up"}
           style={{
             width: WP(92.89),
             marginTop: 51,
@@ -78,20 +78,20 @@ const Login = ({ navigation }) => {
       </View>
       <View>
         <Text style={styles.DontText}>
-          Don't have an account?{" "}
+          Have an account?{" "}
           <Text
             style={{ color: colors.buttonBackground }}
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => navigation.navigate("Login")}
           >
-            Sign Up
-          </Text>
+            LogIn
+          </Text>{" "}
         </Text>
       </View>
     </View>
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   mainContainerLogin: {

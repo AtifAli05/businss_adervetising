@@ -65,13 +65,14 @@ const DashboardScreen = ({navigation}) => {
             style={{alignSelf: 'flex-start', marginTop: 29}}
           />
           <Text style={styles.BudgetText}>Ads budget</Text>
-          <AnySvg
+          {/* <AnySvg
             width={10.92}
             height={10.92}
             name={AddIcon}
             onPress={() => refRBSheet.current.open()}
             style={{marginTop: 29}}
-          />
+          /> */}
+<View></View>
         </View>
 
         <View
@@ -259,7 +260,7 @@ const DashboardScreen = ({navigation}) => {
               paddingHorizontal: 10,
             }}>
             <View style={{flexDirection: 'row'}}>
-              <AnySvg width={6.01} height={4.05} name={BackBottomSheet} />
+              {/* <AnySvg width={6.01} height={4.05} name={BackBottomSheet} /> */}
               <Text style={styles.topTitle}>Create Campaign</Text>
             </View>
             <TouchableOpacity onPress={() => refRBSheet.current.close()}>

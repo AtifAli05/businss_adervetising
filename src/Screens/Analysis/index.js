@@ -36,13 +36,14 @@ const Analysis = ({navigation}) => {
           style={{alignSelf: 'flex-start', marginTop: 29}}
         />
         <Text style={styles.BudgetText}>Analysis</Text>
-        <AnySvg
+        {/* <AnySvg
           width={10.92}
           height={10.92}
           name={AddIcon}
           onPress={() => refRBSheet.current.open()}
           style={{marginTop: 29}}
-        />
+        /> */}
+        <View></View>
       </View>
       <View
         style={{
