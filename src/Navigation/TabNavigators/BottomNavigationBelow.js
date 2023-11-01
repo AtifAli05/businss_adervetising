@@ -21,12 +21,18 @@ import { WP } from "../../Utils";
 
 const BottomTabRN = () => {
   const Tab = createBottomTabNavigator();
-
+  const { navigate } = useNavigation();
   return (
     <Tab.Navigator
-      tabBar={(props) => <CustomTabBar {...props} />}
-      screenOptions={{ headerShown: false }}
+      // tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: '#ffff', width: '100%',height:65 }, // Adjust the width here
+        tabBarActiveTintColor: 'active_tab_color',
+        tabBarInactiveTintColor: 'inactive_tab_color',
+      }}      
     >
+
       <Tab.Screen
         name="Home"
         component={DashboardScreen}
@@ -40,6 +46,8 @@ const BottomTabRN = () => {
           tabBarIcon: ({ color, focused }) => (
             <AnySvg
               width={8.01}
+              onPress={()=>navigate("Home")}
+
               height={7.01}
               name={focused ? HomeBottomActive : HomeBottom}
             />
@@ -59,6 +67,8 @@ const BottomTabRN = () => {
           tabBarIcon: ({ color, focused }) => (
             <AnySvg
               width={6.91}
+              onPress={()=>navigate("Document")}
+
               height={6.46}
               name={focused ? DocumentBottomActive : DocumentBottom}
             />
@@ -77,7 +87,9 @@ const BottomTabRN = () => {
           },
           tabBarIcon: ({ color, focused }) => (
             <AnySvg
-              width={7.46}
+              width={focused?4.46:7.46}
+              onPress={()=>navigate("Performance")}
+
               height={6.46}
               name={focused ? PerformanceBottomActive : PerformanceBottom}
             />
@@ -90,25 +102,30 @@ const BottomTabRN = () => {
         options={{
           tabBarLabel: false,
           tabBarShowLabel: false,
+
           tabBarLabelStyle: {
             fontSize: 8,
             fontWeight: "500",
             backgroundColor: "red",
-            width: 20,
+            // width: 7.79,
+            
             height: 10,
             borderBottomWidth: 2,
             borderColor: "green",
           },
           tabBarIcon: ({ color, focused }) => (
             <AnySvg
-              width={7.79}
-              height={6.46}
+            
+              width={focused? 5.79:7.79}
+              onPress={()=>navigate("Settings")}
+              height={focused?4.46:6.46}
               name={focused ? SettingBottomActive : SettingBottom}
             />
           ),
         }}
       />
     </Tab.Navigator>
+  
   );
 };
 
@@ -126,26 +143,23 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel ?? options?.title ?? route?.name;
         const isFocused = state?.index === index;
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-          });
-          if (!isFocused && !event.defaultPrevented) {
-            navigate(route.name);
+        {/* const onPress = () => {
+          if (!isFocused) {
+            navigation.navigate(route.name);
           }
-        };
+        }; */}
         const onLongPress = () => {
           navigation.emit({ type: "tabPress", target: route.key });
         };
         return (
-          <TouchableOpacity
+
+          <View
             key={index}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
-            onPress={onPress}
+            // onPress={onPress} 
             // onLongPress={onLongPress}
             style={styles.tabButton}
           >
@@ -157,10 +171,17 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
             <Text style={[styles.tabLabel, { color: colors.bottomTabLabel }]}>
               {label}
             </Text>
-          </TouchableOpacity>
+          </View>
+          
         );
       })}
+
+      
     </View>
+
+
+
+
   );
 };
 
@@ -172,25 +193,30 @@ const styles = StyleSheet.create({
     height: WP(17.21),
     paddingBottom: ".01%",
     backgroundColor: "white",
-    justifyContent: "space-evenly",
-    // alignItems: "center",
-    // position: "absolute",
+    justifyContent: "space",
+    alignItems: "center",
+    position: "absolute",
     bottom: 0,
     elevation: 2,
     paddingVertical: "3%",
     textAlign: "center",
+
+    
   },
   tabButton: {
-    flex: 1,
-    justifyContent: "space-evenly",
-    paddingLeft: 5,
+    flex:1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    // marginVertical: 10,
+    borderRadius: 1, 
+    borderColor: "#333B42"
   },
   tabLabel: {
     fontSize: 8,
     // marginTop: 5,
     fontWeight: "500",
     textAlign: "center",
-    letterSpacing: 1,
+    // letterSpacing: 1,
   },
   activeTabIndicator: {
     position: "absolute",
